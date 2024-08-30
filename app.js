@@ -2,9 +2,12 @@ const express = require('express');
 const sequelize = require('./config/config');
 const app = express();
 const userRoutes = require('./routes/userRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 app.use(express.json());
+
 app.use('/api', userRoutes);
+app.use('/api', authRoutes);
 
 sequelize.sync()
         .then(
