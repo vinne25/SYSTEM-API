@@ -122,5 +122,40 @@ router.put('/users/:id/activate', authenticateToken, userController.activeUsers)
  *         description: Some server error
  */
 router.put('/users/:id/deactivate', authenticateToken, userController.deactiveUsers);
+
+/**
+ * @swagger
+ * /users/{id}/password:
+ *   patch:
+ *     summary: Update a user's password
+ *     tags: [Users]
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: The id of the user to update the password
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               password:
+ *                 type: string
+ *                 description: The new password for the user
+ *     responses:
+ *       200:
+ *         description: Password updated successfully
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Some server error
+ */
+router.patch('/users/:id/password', authenticateToken, userController.updatePassword);
  
-module.exports = router
+module.exports = router;
