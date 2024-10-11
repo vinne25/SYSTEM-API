@@ -76,7 +76,7 @@ router.get('/users',authenticateToken, userController.listUsers);
 /**
  * @swagger
  * /users/{id}/activate:
- *   put:
+ *   patch:
  *     summary: Activate a user
  *     tags: [Users]
  *     security:
@@ -96,12 +96,12 @@ router.get('/users',authenticateToken, userController.listUsers);
  *       500:
  *         description: Some server error
  */
-router.put('/users/:id/activate', authenticateToken, userController.activeUsers);
+router.patch('/users/:id/activate', authenticateToken, userController.activeUsers);
 
 /**
  * @swagger
  * /users/{id}/deactivate:
- *   put:
+ *   patch:
  *     summary: Deactivate a user
  *     tags: [Users]
  *     security:
@@ -121,7 +121,7 @@ router.put('/users/:id/activate', authenticateToken, userController.activeUsers)
  *       500:
  *         description: Some server error
  */
-router.put('/users/:id/deactivate', authenticateToken, userController.deactiveUsers);
+router.patch('/users/:id/deactivate', authenticateToken, userController.deactiveUsers);
 
 /**
  * @swagger
@@ -157,5 +157,43 @@ router.put('/users/:id/deactivate', authenticateToken, userController.deactiveUs
  *         description: Some server error
  */
 router.patch('/users/:id/password', authenticateToken, userController.updatePassword);
+
+/**
+ * @swagger
+ * /users/{id}:
+ *   patch:
+ *     summary: Update a user's username and loginuser
+ *     tags: [Users]
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: The id of the user to update the username and loginuser
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 description: The new username for the user
+ *               loginuser:
+ *                 type: string
+ *                 description: The new loginuser for the user
+ *     responses:
+ *       200:
+ *         description: User updated successfully
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Some server error
+ */
+router.patch('/users/:id', authenticateToken, userController.updateUser);
  
 module.exports = router;
