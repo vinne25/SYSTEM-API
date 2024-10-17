@@ -1,4 +1,4 @@
-const {DataTypes} = require('sequelize');
+const {DataTypes} = require('sequelize');=
 const sequelize = require('../config/config');
 
 const Product = sequelize.define('Product', {
@@ -12,7 +12,7 @@ const Product = sequelize.define('Product', {
     },
     description:{
         type: DataTypes.STRING,
-        allowNull
+        allowNull: false,
     }
 }, {
     timestamps: false,
