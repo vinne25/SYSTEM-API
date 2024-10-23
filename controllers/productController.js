@@ -31,11 +31,12 @@ exports.createProduct = async (req, res) => {
 exports.updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
-    const { price, description } = req.body;
+    const { name, price, description } = req.body;
     const product = await Product.findOne({ where: { id: id } });
     if (product) {
       product.description = description;
       product.price = price;
+      product.name = name;
       await product.save();
       res.status(200).json({ message: "Product updated successfully!" });
     } else {
