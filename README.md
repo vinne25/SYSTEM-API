@@ -1,4 +1,4 @@
-# Nome da Aplicação
+# System API
 
 Uma API para gerenciar usuários e produtos.
 
@@ -17,3 +17,4 @@ Uma API para gerenciar usuários e produtos.
 - [Node.js](https://nodejs.org/) instalado.
 - [MySQL](https://www.mysql.com/) instalado e configurado.
 - [Laragon](https://laragon.org/) (opcional, para facilitar o ambiente de desenvolvimento).
+
